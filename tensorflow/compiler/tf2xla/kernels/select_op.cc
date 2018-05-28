@@ -40,7 +40,7 @@ class SelectOp : public XlaOpKernel {
             "'then' and 'else' must have the same size.  but received: ",
             then_shape.DebugString(), " vs. ", else_shape.DebugString()));
 
-    xla::ComputationBuilder* builder = ctx->builder();
+    xla::XlaBuilder* builder = ctx->builder();
 
     auto cond_handle = ctx->Input(0);
     auto then_handle = ctx->Input(1);
@@ -83,7 +83,7 @@ class SelectOp : public XlaOpKernel {
   TF_DISALLOW_COPY_AND_ASSIGN(SelectOp);
 };
 
-REGISTER_XLA_OP("Select", SelectOp);
+REGISTER_XLA_OP(Name("Select"), SelectOp);
 
 }  // namespace
 }  // namespace tensorflow
